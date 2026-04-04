@@ -4,4 +4,8 @@ export default interface RepositoryInterface<T, ID extends string | number> {
     save(entity: T): Promise<T>;
 
     delete(id: ID): Promise<void>;
+
+    delete(entity: T): Promise<void>;
+
+    delete(t: ID | T): Promise<void>;
 }
