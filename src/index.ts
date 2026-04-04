@@ -4,6 +4,9 @@ import Core from "./infrastructure/Core";
 import CloseProcess from "./share/functions/CloseProcess";
 import SystemException from "./share/exceptions/System.exception";
 import Server from "./infrastructure/Server";
+import indexRoute from "./infrastructure/http/index.route";
+import NotFoundController from "./infrastructure/http/NotFound.controller";
+import ErrorController from "./infrastructure/http/Error.controller";
 
 const core = Core.instance
 
@@ -13,6 +16,10 @@ if (!TCP_PORT) throw new SystemException("TCP_PORT is not defined in .env file")
 const server = new Server(Number(TCP_PORT))
 
 core.server = server
+
+server.application.use(indexRoute)
+server.application.use(NotFoundController)
+server.application.use(ErrorController)
 
 core.start().then(() => {
 }).catch(CloseProcess(core))
