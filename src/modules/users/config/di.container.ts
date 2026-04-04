@@ -7,7 +7,7 @@ import UserUpdateUseCase from "../application/useCases/User.update.useCase";
 import UserDeleteUseCase from "../application/useCases/User.delete.useCase";
 
 const encryptArgon = new EncryptArgon()
-const userSqliteRepository = new UserSqliteRepository()
+export const userSqliteRepository = new UserSqliteRepository()
 
 export const userListUseCase = new UserListUseCase(userSqliteRepository)
 export const userDetailUseCase = new UserDetailUseCase(userSqliteRepository)
