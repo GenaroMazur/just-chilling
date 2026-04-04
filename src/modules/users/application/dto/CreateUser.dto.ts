@@ -1,5 +1,18 @@
 import {RolEnum} from "../../domain/enums/Rol.enum";
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CreateUserDto:
+ *       type: 'object'
+ *       required: ['rol', 'username', 'password', 'email']
+ *       properties:
+ *         rol: { type: 'string' }
+ *         username: { type: 'string' }
+ *         password: { type: 'string' }
+ *         email: { type: 'string' }
+ */
 export default class CreateUserDto {
     rol: RolEnum
     username: string

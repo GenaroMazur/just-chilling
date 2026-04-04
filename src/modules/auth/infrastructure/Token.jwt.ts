@@ -9,7 +9,7 @@ export default class TokenJwt implements TokenServiceInterface {
     }
 
     generate(payload: any): string {
-        return jwt.sign(payload, this.secret);
+        return jwt.sign({...payload}, this.secret);
     }
 
     verify(token: string): any {

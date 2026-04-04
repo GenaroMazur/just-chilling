@@ -1,3 +1,15 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     UpdateUserDto:
+ *       type: 'object'
+ *       properties:
+ *         username: { type: 'string' }
+ *         newPassword: { type: 'string' }
+ *         oldPassword: { type: 'string' }
+ *         email: { type: 'string' }
+ */
 export default class UpdateUserDto {
     username?: string
     newPassword?: string
