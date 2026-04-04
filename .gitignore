@@ -157,6 +157,11 @@ dist
 ### Example user template template
 ### Example user template
 
+# Databases
+*.sqlite
+*.sqlite-journal
+*.sqlite3
+
 # IntelliJ project files
 .idea
 *.iml

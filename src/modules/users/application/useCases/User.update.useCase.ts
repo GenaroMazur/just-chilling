@@ -3,8 +3,14 @@ import UpdateUserDto from "../dto/UpdateUser.dto";
 import ForbiddenException from "../../../../share/exceptions/Forbidden.exception";
 import UserNotFound from "../../domain/exceptions/User.notFound";
 import UserValidationException from "../../domain/exceptions/User.validation.exception";
+import UserRepository from "../../domain/interfaces/User.repository";
+import EncryptServiceInterface from "../../domain/interfaces/encrypt.service.interface";
 
 export default class UserUpdateUseCase extends UserUseCase {
+    constructor(userRepository: UserRepository, protected readonly encryptMethod: EncryptServiceInterface) {
+        super(userRepository);
+    }
+
     async execute(id: number, updateUserDto: UpdateUserDto, currentUserId: number) {
         if (currentUserId !== id)
             throw new ForbiddenException()

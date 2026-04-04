@@ -1,4 +1,4 @@
-export default interface EncryptInterface {
+export default interface EncryptServiceInterface {
     encrypt(text: string): Promise<string>;
 
     /**

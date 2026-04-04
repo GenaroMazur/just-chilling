@@ -4,8 +4,14 @@ import {RolEnum} from "../../domain/enums/Rol.enum";
 import ForbiddenException from "../../../../share/exceptions/Forbidden.exception";
 import User from "../../domain/entity/User";
 import UserValidationException from "../../domain/exceptions/User.validation.exception";
+import UserRepository from "../../domain/interfaces/User.repository";
+import EncryptServiceInterface from "../../domain/interfaces/encrypt.service.interface";
 
 export default class UserCreateUseCase extends UserUseCase {
+    constructor(userRepository: UserRepository, protected readonly encryptMethod: EncryptServiceInterface) {
+        super(userRepository);
+    }
+
     async execute(createUserDto: CreateUserDto, currentUserRol: RolEnum) {
         if (currentUserRol !== RolEnum.ADMIN) throw new ForbiddenException()
 

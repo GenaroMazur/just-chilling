@@ -10,11 +10,18 @@
     "dev": "ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only src/index.ts"
   },
   "dependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "argon2": "^0.44.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.0",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "morgan": "^1.10.1",
+    "pg": "^8.20.0",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
+    "typeorm": "^0.3.28",
     "winston": "^3.19.0"
   },
   "devDependencies": {

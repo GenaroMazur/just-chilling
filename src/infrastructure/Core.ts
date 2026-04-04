@@ -1,4 +1,5 @@
 import Server from "./Server";
+import Database from "./database/Database";
 
 export default class Core {
     private static _instance: Core;
@@ -10,17 +11,18 @@ export default class Core {
     }
 
     public server: Server | null = null
+    public database: Database | null = null
 
     private constructor() {
     }
 
     public async start() {
-
+        await this.database?.start();
         await this.server?.start();
     }
 
     public async stop() {
-
         await this.server?.stop();
+        await this.database?.stop();
     }
 }
