@@ -11,7 +11,7 @@ export default class UserUpdateUseCase extends UserUseCase {
         super(userRepository);
     }
 
-    async execute(id: number, updateUserDto: UpdateUserDto, currentUserId: number) {
+    async execute(id: string, updateUserDto: UpdateUserDto, currentUserId: string) {
         if (currentUserId !== id)
             throw new ForbiddenException()
 

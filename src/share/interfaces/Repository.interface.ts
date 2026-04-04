@@ -1,11 +1,11 @@
-export default interface RepositoryInterface<T, ID extends string | number> {
-    findById(id: ID): Promise<T | null>;
+export default interface RepositoryInterface<T> {
+    findById(id: string): Promise<T | null>;
 
     save(entity: T): Promise<T>;
 
-    delete(id: ID): Promise<void>;
+    delete(id: string): Promise<void>;
 
     delete(entity: T): Promise<void>;
 
-    delete(t: ID | T): Promise<void>;
+    delete(t: string | T): Promise<void>;
 }

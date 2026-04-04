@@ -4,7 +4,7 @@ import {RolEnum} from "../../domain/enums/Rol.enum";
 import ForbiddenException from "../../../../share/exceptions/Forbidden.exception";
 
 export default class UserDeleteUseCase extends UserUseCase {
-    async execute(id: number, currentUserId: number) {
+    async execute(id: string, currentUserId: string) {
         const [currentUser, user] = await Promise.all([
             this.userRepository.findById(currentUserId),
             this.userRepository.findById(id)

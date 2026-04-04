@@ -20,19 +20,19 @@ export default class UserSqliteRepository implements UserRepository {
         return await this.repository.find();
     }
 
-    async findById(id: number): Promise<User | null> {
-        return await this.repository.findOneBy({id});
+    async findById(id: string): Promise<User | null> {
+        return await this.repository.findOneBy({id: Number(id)});
     }
 
     async save(entity: User): Promise<User> {
         return await this.repository.save(entity);
     }
 
-    async delete(id: number): Promise<void>;
+    async delete(id: string): Promise<void>;
     async delete(entity: User): Promise<void>;
-    async delete(t: number | User): Promise<void> {
-        if (typeof t === "number") {
-            await this.repository.softDelete(t);
+    async delete(t: string | User): Promise<void> {
+        if (typeof t === "string") {
+            await this.repository.softDelete(Number(t));
         } else {
             await this.repository.softRemove(t);
         }
