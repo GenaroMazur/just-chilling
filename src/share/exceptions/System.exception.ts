@@ -1,7 +1,7 @@
 export default class SystemException extends Error {
     body?: object;
 
-    constructor(message: string, body?: unknown) {
+    constructor(message: string, body?: any) {
         super(message);
         this.name = "systemException";
         this.body = body;
