@@ -24,7 +24,7 @@ const consoleFormat = format.combine(
     format.errors({stack: true}),
     format.printf(({timestamp, level, message, stack, ...meta}) => {
         return (
-            `[${timestamp}] ${level}: ${message}` +
+            `[${timestamp}] ${level}: ${typeof message === "object" ? JSON.stringify(message, null, 2) : message}` +
             (stack ? `\n${stack}` : "") +
             (Object.keys(meta).length
                 ? `\nMeta: ${JSON.stringify(meta, null, 2)}`

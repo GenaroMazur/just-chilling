@@ -1,16 +1,22 @@
 import {NextFunction, Request, Response} from "express";
 
 const ControllerBuilder =
-    (cb: (req: Request, res: Response) => Promise<unknown> | unknown) =>
+    (cb: (req: Request, res: Response, next: NextFunction) => Promise<unknown> | unknown) =>
         async function controller(req: Request, res: Response, next: NextFunction) {
             let response = null;
-
+            let nextCalled = false;
+            const nextAux = (err?: unknown) => {
+                if (nextCalled) return;
+                nextCalled = true;
+                next(err);
+            }
             try {
-                response = await cb(req, res);
+                response = await cb(req, res, nextAux);
             } catch (e) {
                 next(e);
                 return;
             }
+            if (nextCalled) return;
             if (res.headersSent) return;
 
             if (response === undefined || response === null) {

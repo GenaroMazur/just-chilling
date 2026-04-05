@@ -22,16 +22,17 @@ const ErrorController = (
 
     if (err instanceof UserException) {
         if (err instanceof NotFoundException) {
-            return res.status(404).send({message: "Not Found"});
+            return res.status(404).send({message: "Not Found", ...err.body});
         } else {
-            return res.status(err.code || 400).send({message: err.message});
+            return res.status(err.code || 400).send({message: err.message, ...err.body});
         }
     } else if (err instanceof SystemException) {
         logger.warning(err);
         return res.status(500).send({
             error: NODE_ENV ? err.message : "Internal server error.",
-            stack: NODE_ENV ? err.stack : undefined
-        })
+            stack: NODE_ENV ? err.stack : undefined,
+            ...err.body
+            })
     }
 
     logger.error(err);

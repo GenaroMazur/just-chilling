@@ -18,8 +18,8 @@ export default class UpdateUserDto {
 
     constructor({username, newPassword, oldPassword, email}: UpdateUserDto) {
         this.username = username
-        this.newPassword = oldPassword
-        this.oldPassword = newPassword
+        this.newPassword = newPassword
+        this.oldPassword = oldPassword
         this.email = email
     }
 }

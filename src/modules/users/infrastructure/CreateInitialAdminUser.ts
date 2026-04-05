@@ -2,6 +2,7 @@ import {userSqliteRepository} from "../config/di.container";
 import User from "../domain/entity/User";
 import {RolEnum} from "../domain/enums/Rol.enum";
 import {logger} from "../../../share/functions/logger";
+import EncryptArgon from "./Encrypt.argon";
 
 export async function createInitialAdminUser() {
     const userList = await userSqliteRepository.findAll()
@@ -10,7 +11,7 @@ export async function createInitialAdminUser() {
 
         initialUser.username = "admin"
         initialUser.email = "admin@domain.com"
-        initialUser.password = "admin"
+        initialUser.password = await new EncryptArgon().encrypt("admin")
         initialUser.rol = RolEnum.ADMIN
 
         logger.info("Creating initial user: admin / admin")
