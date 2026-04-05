@@ -1,4 +1,5 @@
 {
+  "exclude": ["./tests"],
   "compilerOptions": {
     /* Language and Environment */
     "target": "ES6",

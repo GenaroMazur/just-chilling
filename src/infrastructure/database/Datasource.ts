@@ -1,14 +1,17 @@
 import {DataSourceOptions} from "typeorm";
 import {UserEntity} from "../../modules/users/infrastructure/sqlite/User.sqlite.entity";
+import {UserPostgresEntity} from "../../modules/users/infrastructure/postgres/User.postgres.entity";
 import SystemException from "../../share/exceptions/System.exception";
 
 const DB_TYPE = process.env.DB_TYPE || "sqlite"
+const entities = DB_TYPE === "postgres" ? [UserPostgresEntity] : [UserEntity]
+
 const dbOptions: DataSourceOptions = {
     type: DB_TYPE as any,
     database: process.env.DB_DATABASE || "database.sqlite", // sqlite, postgres, mysql, mariadb, etc.
     synchronize: process.env.DB_SYNCHRONIZE === "true",
     logging: process.env.DB_LOGGING === "true",
-    entities: [UserEntity],
+    entities: entities,
 }
 if (DB_TYPE !== "sqlite") {
     const DB_HOST = process.env.DB_HOST

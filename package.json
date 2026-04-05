@@ -7,7 +7,10 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only src/index.ts"
+    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --respawn --transpile-only src/index.ts",
+    "test:stress": "k6 run tests/stress/auth-login.stress.js",
+    "test:stress:create:user-create": "k6 run tests/stress/user-create.stress.js",
+    "test:stress:all": "k6 run tests/stress/auth-login.stress.js && k6 run tests/stress/user-list.stress.js "
   },
   "dependencies": {
     "@types/jsonwebtoken": "^9.0.10",

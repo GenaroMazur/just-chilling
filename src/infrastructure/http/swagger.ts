@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === 'development') {
     swaggerRouter.use('/', swaggerUi.serve);
     swaggerRouter.get('/', swaggerUi.setup(swaggerSpec));
 } else {
-    swaggerRouter.all('*', (_req, res) => {
+    swaggerRouter.use((_req, res) => {
         res.status(404).send('Not Found');
     });
 }

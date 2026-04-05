@@ -7,14 +7,14 @@ export const validateId = [param('id').isInt().withMessage('Invalid id'), valida
 export const userCreateValidation = [
     body("username")
         .notEmpty().withMessage('Username is required').bail()
-        .isString().withMessage('Username must be a string').bail()
-        .isLength({min: 3, max: 20}).withMessage('Username must be between 3 and 20 characters').bail(),
+        .isString().withMessage('Username must be a string').bail(),
+        // .isLength({min: 3, max: 20}).withMessage('Username must be between 3 and 20 characters').bail(),
     body("email")
         .notEmpty().withMessage('Email is required').bail()
         .isEmail().withMessage('Invalid email format').bail(),
     body("password")
         .notEmpty().withMessage('Password is required'),
-    body("role")
+    body("rol")
         .notEmpty().withMessage('Role is required').bail()
         .isIn(Object.values(RolEnum)).withMessage('Invalid role, must be user or admin'),
     validationHandlerMiddleware
