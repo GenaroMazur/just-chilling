@@ -5,7 +5,7 @@ import SystemException from "../../share/exceptions/System.exception";
 const DB_TYPE = process.env.DB_TYPE || "sqlite"
 const dbOptions: DataSourceOptions = {
     type: DB_TYPE as any,
-    database: process.env.DB_DATABASE || "database.sqlite",
+    database: process.env.DB_DATABASE || "database.sqlite", // sqlite, postgres, mysql, mariadb, etc.
     synchronize: process.env.DB_SYNCHRONIZE === "true",
     logging: process.env.DB_LOGGING === "true",
     entities: [UserEntity],
